@@ -1,0 +1,38 @@
+# --- Dependency Directories (Crucial to ignore!) ---
+node_modules/
+client/node_modules/
+server/node_modules/
+ai-service/node_modules/
+ai-service/venv/          # Ignores Python virtual environment if used later
+
+# --- Local Environment Variables & Secrets ---
+.env
+client/.env
+server/.env
+ai-service/.env
+*.local
+
+# --- Operating System System Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDEs and Code Editors ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# --- Production Build Outputs ---
+client/dist/
+client/build/
+server/dist/
+
+# --- Debug/Log Files ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
