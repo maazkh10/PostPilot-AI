@@ -1,0 +1,67 @@
+/* 1. Global Font and Border Cleanup */
+.calendar-container {
+  font-family: inherit;
+}
+
+.calendar-container .fc {
+  --fc-border-color: #f4f4f5; /* Tailwind neutral-100 */
+}
+
+/* Remove ugly double lines on the outermost wrapper */
+.calendar-container .fc-theme-standard td, 
+.calendar-container .fc-theme-standard th,
+.calendar-container .fc-theme-standard .fc-scrollgrid {
+  border-color: #f4f4f5 !important;
+}
+
+/* 2. Style Weekday Header Labels */
+.calendar-container .fc .fc-col-header-cell {
+  padding: 12px 0;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.calendar-container .fc .fc-col-header-cell-cushion {
+  color: #525252; /* Tailwind neutral-600 */
+  font-size: 13px;
+  text-decoration: none !important;
+}
+
+/* Highlight today's header column slightly */
+.calendar-container .fc .fc-day-today {
+  background-color: #fafafa !important;
+}
+
+/* 3. Time Slots Grid Adjustments */
+.calendar-container .fc .fc-timegrid-slot-label-cushion {
+  color: #a3a3a3; /* Tailwind neutral-400 */
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.calendar-container .fc .fc-timegrid-slot {
+  height: 48px !important; /* Spreading the layout elegantly */
+}
+
+/* 4. Beautiful Custom Cards for Events */
+.calendar-container .fc-v-event {
+  border-radius: 8px !important;
+  border-left: 3px solid currentColor !important; /* Thick color bar on left side */
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calendar-container .fc-v-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+/* Hide default inner time text wrapper since we handle it in JS */
+.calendar-container .fc-event-main-frame {
+  display: none !important;
+}
