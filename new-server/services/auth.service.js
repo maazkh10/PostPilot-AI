@@ -15,7 +15,7 @@ const registerUser = async ({name , email , password}) => {
     })
 
     if (existingUser) {
-        throw new apiError(400, "user alredy exissit")
+        throw new apiError( "user alredy exissit")
     }
 
 

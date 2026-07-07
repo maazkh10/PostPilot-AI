@@ -24,7 +24,7 @@ export default function Signup() {
       password
     })
   
-     setUser(res.user.data.data.user)
+     setUser(res.user.data.user)
 
   
      navigation("/login")
