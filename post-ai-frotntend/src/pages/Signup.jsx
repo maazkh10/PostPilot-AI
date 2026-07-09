@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 
 import { useAuth } from "../custom/useAuth";
@@ -9,9 +9,21 @@ import { login, signUp } from "../api/authApi";
 
 import { useState } from "react";
 
+import  {notify} from "../utils/toast"
 export default function Signup() {
+
   
+    const [email , setEmail ] = useState("")
+  
+  const [password , setPassword] = useState("")
+  
+  const [ name , setName] = useState("")
+
+
+
   const {setUser} = useAuth()
+
+  const navigation = useNavigate()
 
   const signUphandle = async (e) =>{
    
@@ -24,20 +36,18 @@ export default function Signup() {
       password
     })
   
-     setUser(res.user.data.user)
+if (res && res.data) {
+  const {user , token} = res.data
 
-  
-     navigation("/login")
-  
+  setUser(user);
+
+  if (token) {
+    localStorage.setItem("token" , token)
+  }
+  notify.success("account created succesfully")
+  navigation("/")
+}
     }
-
-  const [email , setEmail ] = useState("")
-  
-  const [password , setPassword] = useState("")
-  
-  const [ name , setName] = useState("")
-
-
   return (
     
     <div className="min-h-screen flex items-center justify-center bg-neutral-50 px-6">

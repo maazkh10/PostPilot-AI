@@ -3,9 +3,13 @@ import { useAuth } from "../custom/useAuth";
 import { login } from "../api/authApi";
 import { useState } from "react";
 
+import  {notify} from "../utils/toast"
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
 
   const {setUser} = useAuth()
+  const navigate = useNavigate()
 
   const [email , setEmail] = useState("")
   const [password , setPasswordl] = useState("")
@@ -15,7 +19,9 @@ export default function Login() {
     const res = await login({
    email , password
     });
-    setUser(res.data.user)
+    setUser(res.data.data.user)
+    notify.success("login successful")
+    navigate("/")
     console.log(res.data)
   }
   return (

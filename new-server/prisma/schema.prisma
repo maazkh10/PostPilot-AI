@@ -7,25 +7,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model User {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+  posts     Post[]   // Links user to their posts
 }
 
 model Post {
-      id        Int      @id @default(autoincrement())
-      userId Int 
-      title String
-      caption String
-      hashtags String?
-      platform String
-      status String
-      scheduledAt DateTime?
-      publishedAt DateTime?
-      createdAt DateTime @default(now())
-      updatedAt DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  title       String
+  caption     String    
+  hashtags    String?   
+  platform    String    
+  status      String    @default("Draft")
+  scheduledAt DateTime?
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Changed to optional by adding the '?' symbol
+  userId      Int?      
+  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -4,7 +4,6 @@ const ApiError  = require("../utils/ApiError.js")
 
 
 const createPost = async (postData , userId) => {
-
     const {
     title,
     caption,
@@ -17,9 +16,7 @@ const createPost = async (postData , userId) => {
 if (!title || !caption || !platform) {
     throw new ApiError(400, "all fiilded are required")
 }
-
 // bussness logic
-
 if (status === "Scheduled" && !scheduledAt) {
     throw new ApiError(
         400 , 
@@ -44,6 +41,17 @@ const post = await prisma.post.create({
 }
 
 
+const getAllPost = async (userId) =>{
+    const posts = await prisma.post.findMany({
+        where : {
+            userId : userId
+        },
+        orderBy:{
+            scheduledAt: "asc"
+        }
+    })
+    return posts
+}
 const updatePost = async (postId , updateData , userId) => {
 
     // finidn post by post id 
@@ -96,4 +104,5 @@ const deletePost = async (postId , userId) => {
     })
     return deleteit
 }
-module.exports = {createPost , updatePost , deletePost}
+module.exports = {createPost , 
+    getAllPost, updatePost , deletePost}

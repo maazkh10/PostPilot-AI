@@ -13,12 +13,19 @@ function Dashboard() {
     const [isModalOpen , setIsModalOpen] = useState(false)
     const [activeTab , setActiveTab] = useState("dashboard")
 
+    const [refreshTrigger , setTrigger] = useState(0) 
     const calendarRef = useRef(null)
 
     const [currentRange , setCurrentRange] = useState({
         start : null,
         end : null
     })
+
+
+    const triggerCalendarRefresh = () =>{
+      setTrigger(prev => prev + 1)
+    }
+
   return (
     <div className='w-screen h-screen flex bg-white'>
         <div className='w-screen h-screen flex bg-white font-sans antialiased text-neutral-800
@@ -60,8 +67,6 @@ function Dashboard() {
 
 
       {/* that thing as dynamic  */}
-
-      
 
       {activeTab === "dashboard" &&(
 
@@ -113,8 +118,9 @@ function Dashboard() {
 
       
 
-      <CreatePostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}
-
+      <CreatePostModal 
+      isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}
+      onPostCreated={triggerCalendarRefresh}
       />
 
       </div>

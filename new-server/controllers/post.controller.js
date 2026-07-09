@@ -1,5 +1,7 @@
 
-const   {createPost , updatePost  , deletePost } = require("../services/post.service.js")
+const   {createPost , 
+    getAllPost , 
+    updatePost  , deletePost } = require("../services/post.service.js")
 
 
 
@@ -48,6 +50,23 @@ const updatePostControler = async (req , res , next) => {
 }
 
 
+
+const getAllPostControler = async (req , res , next) =>{
+
+    try {
+        const userId = 1;
+        const resulr = await getAllPost(userId)
+
+        return res.status(200).json({
+            success : true,
+            message : "all post fetched succefully",
+            data : resulr
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 const deletePostControler =  async (req , res , next) => {
 
     const postId = Number(req.params.id )
@@ -60,4 +79,6 @@ const deletePostControler =  async (req , res , next) => {
         data : resule
     })
 }
-module.exports = {PostCreateControler , updatePostControler , deletePostControler}
+module.exports = {PostCreateControler
+    , getAllPostControler 
+    , updatePostControler , deletePostControler}

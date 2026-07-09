@@ -1,7 +1,10 @@
 const express = require("express")
 
-const {PostCreateControler , updatePostControler , deletePostControler} = require('../controllers/post.controller.js')
+const {PostCreateControler ,
+    updatePostControler , deletePostControler, getAllPostControler} = require('../controllers/post.controller.js')
 const router = express.Router()
+
+router.get("/" , getAllPostControler)
 
 router.post("/postcre", PostCreateControler)
 
