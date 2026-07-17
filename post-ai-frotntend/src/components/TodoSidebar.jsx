@@ -121,7 +121,6 @@ export default function ContentPipelineSidebar({ onCreatePostClick, onQuickSched
               Staged Drafts ({drafts.length})
             </h2>
           </div>
-
           {drafts.length === 0 ? (
             <div className="border border-dashed border-neutral-200 rounded-xl p-6 text-center">
               <p className="text-[11px] text-neutral-400 font-medium">Pipeline is empty.</p>
@@ -148,7 +147,6 @@ export default function ContentPipelineSidebar({ onCreatePostClick, onQuickSched
                         <span>Slot</span>
                       </button>
                     </div>
-
                     {/* Meta Data Context Headers */}
                     <div className="space-y-0.5">
                       <h4 className="text-xs font-bold text-neutral-900 truncate tracking-tight">
@@ -164,7 +162,6 @@ export default function ContentPipelineSidebar({ onCreatePostClick, onQuickSched
             </div>
           )}
         </div>
-
       </div>
     </div>
   );
